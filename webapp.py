@@ -80,7 +80,11 @@ def renderPage1():
 
 @app.route('/page2')
 def renderPage2():
-    return render_template('page2.html', pr=session['user_data']['public_repos'])
+    if 'public_repos' in session['user_data']:
+        public_repos = session['user_data']['public_repos']
+    else:
+        public_repos = "Not Logged In..."
+    return render_template('page2.html', pr=public_repos)
 
 #the tokengetter is automatically called to check who is logged in
 @github.tokengetter
