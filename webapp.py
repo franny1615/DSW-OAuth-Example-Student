@@ -80,9 +80,10 @@ def renderPage1():
 
 @app.route('/page2')
 def renderPage2():
-    pur = 0
     if 'public_repos' in session['user_data']:
         pur = session['user_data']['public_repos']
+    else:
+        pur = 0
     return render_template('page2.html', pr=pur)
 
 #the tokengetter is automatically called to check who is logged in
