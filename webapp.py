@@ -84,7 +84,7 @@ def renderPage2():
         if 'public_repos' in session['user_data']:
             pur = session['user_data']['public_repos']
     else:
-        pur = 0
+        pur = 'Not Logged In'
     return render_template('page2.html', pr=pur)
 
 #the tokengetter is automatically called to check who is logged in
