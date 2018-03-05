@@ -19,9 +19,17 @@
 
 
   </head>
-  <body>
+  <body>    
     {% include 'navbar.html' %}
-
+    {% with messages=get_flash_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li> {{ message }} </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
     <div id="content">
 
