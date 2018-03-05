@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 
-app.debug = False #Change this to False for production
+app.debug = True #Change this to False for production
 
 app.secret_key = os.environ['SECRET_KEY'] #USE SECRET_KEY to sign the cookies 
 oauth = OAuth(app)
