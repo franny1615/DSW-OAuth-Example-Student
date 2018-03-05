@@ -56,18 +56,18 @@ def authorized():
     resp = github.authorized_response()
     if resp is None:
         session.clear()
-        message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
+        flash('Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args))      
     else:
         try:
             #save user data and set log in message
             session['github_token'] = (resp['access_token'],'')
             session['user_data'] = github.get('user').data
-            message="You were succesfully logged in as " + session['user_data']['login']
+            flash("You were succesfully logged in as " + session['user_data']['login'])
         except:
             #clear the session and give error message
             session.clear()
-            message = 'Unable to log in. Please try again.'
-    return render_template('message.html', message=message)
+            flash('Unable to log in. Please try again.','error')
+    return render_template('home.html')
 
 
 @app.route('/page1')
